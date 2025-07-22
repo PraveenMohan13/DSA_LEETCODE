@@ -7,16 +7,16 @@
 ## 1D Dynamic Programming LeetCode Problems - Practice Flow
 ________________________________________
 📄 Beginner Level (Basic 1D DP Pattern)<br>
-1. 70. Climbing Stairs<br>
+1) 70. Climbing Stairs<br>
 •	Concept: Basic DP with dp[i] = dp[i-1] + dp[i-2]<br>
 •	Goal: Ways to climb n stairs taking 1 or 2 steps.<br>
 •	Focus: Base cases, recursion + memoization or bottom-up.<br>
-2. 198. House Robber
-•	Concept: Rob or skip house.
-•	Transition: dp[i] = max(dp[i-1], dp[i-2] + nums[i])
-3. 746. Min Cost Climbing Stairs
-•	Concept: Similar to Climbing Stairs but with cost array.
-•	Transition: dp[i] = cost[i] + min(dp[i-1], dp[i-2])
+2.198. House Robber<br>
+•	Concept: Rob or skip house.<br>
+•	Transition: dp[i] = max(dp[i-1], dp[i-2] + nums[i])<br>
+3. 746. Min Cost Climbing Stairs<br>
+•	Concept: Similar to Climbing Stairs but with cost array.<br>
+•	Transition: dp[i] = cost[i] + min(dp[i-1], dp[i-2])<br>
 ________________________________________
 🔁 Intermediate Level (Space Optimization, Variants)
 4. 1137. N-th Tribonacci Number
