@@ -6,11 +6,11 @@
 
 ## 1D Dynamic Programming LeetCode Problems - Practice Flow
 ________________________________________
-📄 Beginner Level (Basic 1D DP Pattern)
-1. 70. Climbing Stairs
-•	Concept: Basic DP with dp[i] = dp[i-1] + dp[i-2]
-•	Goal: Ways to climb n stairs taking 1 or 2 steps.
-•	Focus: Base cases, recursion + memoization or bottom-up.
+📄 Beginner Level (Basic 1D DP Pattern)<br>
+1. 70. Climbing Stairs<br>
+•	Concept: Basic DP with dp[i] = dp[i-1] + dp[i-2]<br>
+•	Goal: Ways to climb n stairs taking 1 or 2 steps.<br>
+•	Focus: Base cases, recursion + memoization or bottom-up.<br>
 2. 198. House Robber
 •	Concept: Rob or skip house.
 •	Transition: dp[i] = max(dp[i-1], dp[i-2] + nums[i])
