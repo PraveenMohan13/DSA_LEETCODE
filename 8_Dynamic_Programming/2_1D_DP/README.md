@@ -11,10 +11,10 @@ ________________________________________
 •	Concept: Basic DP with dp[i] = dp[i-1] + dp[i-2]<br>
 •	Goal: Ways to climb n stairs taking 1 or 2 steps.<br>
 •	Focus: Base cases, recursion + memoization or bottom-up.<br>
-2.198. House Robber<br>
+2) 198. House Robber<br>
 •	Concept: Rob or skip house.<br>
 •	Transition: dp[i] = max(dp[i-1], dp[i-2] + nums[i])<br>
-3. 746. Min Cost Climbing Stairs<br>
+3) 746. Min Cost Climbing Stairs<br>
 •	Concept: Similar to Climbing Stairs but with cost array.<br>
 •	Transition: dp[i] = cost[i] + min(dp[i-1], dp[i-2])<br>
 ________________________________________
