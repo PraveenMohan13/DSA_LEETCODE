@@ -116,6 +116,25 @@ class Solution {
     }
 }
 ```
+#### Java
+
+```java
+class Solution {
+    int fun(int a[],int i,Integer dp[])
+    {
+        if(i>=a.length)
+            return 0;
+        if(dp[i]==null)
+            dp[i]=a[i]+Math.min(fun(a,i+2,dp),fun(a,i+1,dp));
+        return dp[i];
+    }
+    public int minCostClimbingStairs(int[] cost) {
+        Integer dp[]=new Integer[cost.length+1];
+        return Math.min(fun(cost,0,dp),fun(cost,1,dp));    
+    }
+}
+```
+
 
 #### C++
 
