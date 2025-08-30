@@ -36,8 +36,8 @@ ________________________________________________________________________________
 Dynamic Programming optimizes recursive solutions by avoiding repeated calculations and
 is widely used for problems such as Fibonacci numbers, shortest paths, knapsack, and many more.
 ________________________________________________________________________________________________________________________
-
 Difference between tabulation and memoization:
+
 Tabulation: Bottom-up approach, iterative, pre-fills solutions from smallest to largest subproblems.
 
 Memoization: Top-down approach, recursive, stores results of recursive calls as they occur.
