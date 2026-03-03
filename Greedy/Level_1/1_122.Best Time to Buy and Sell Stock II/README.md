@@ -255,7 +255,22 @@ class Solution {
     }
 }
 ```
+#### Java
 
+```java
+class Solution {
+    public int maxProfit(int[] arr) {
+       int hold = -arr[0];
+       int not_hold = 0;
+       for(int i=1;i<arr.length;i++)
+       {
+        hold = Math.max(hold,not_hold-arr[i]);
+        not_hold = Math.max(not_hold,hold+arr[i]);
+       }
+       return not_hold;
+    }
+}
+```
 #### C++
 
 ```cpp
