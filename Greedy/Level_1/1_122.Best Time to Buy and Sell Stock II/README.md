@@ -94,7 +94,25 @@ class Solution {
     }
 }
 ```
+#### Java
 
+```java
+class Solution {
+    int helper(int a[],int n)
+    {
+        if(n==0)
+            return 0;
+        if(a[n]>a[n-1])
+            return a[n]-a[n-1]+helper(a,n-1);
+        return helper(a,n-1);
+    }
+    public int maxProfit(int[] prices) {
+        return helper(prices,prices.length-1);
+
+        
+    }
+}
+```
 #### C++
 
 ```cpp
