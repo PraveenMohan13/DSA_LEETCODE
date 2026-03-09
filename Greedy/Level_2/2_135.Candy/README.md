@@ -271,6 +271,42 @@ class Solution {
     }
 }
 ```
+#### Java
+
+```java
+class Solution {
+
+    public int candy(int[] ratings) {
+        int minCandy = 1;
+        int prevCandy = 1;
+        int child = 1;
+
+        while (child < ratings.length) {   
+            if (ratings[child] > ratings[child - 1]) {
+                minCandy += ++prevCandy;
+                child++;
+            } else if (ratings[child] == ratings[child - 1]) {
+                minCandy += 1;
+                prevCandy = 1;
+                child++;
+            } else {
+                int declineCount = 1;
+
+                while (child < ratings.length && ratings[child] < ratings[child - 1]) {
+                    declineCount++;
+                    child++;
+                }
+
+                minCandy += ((declineCount * (declineCount + 1)) / 2);
+                minCandy -= Math.min(prevCandy, declineCount);
+                prevCandy = 1;
+            }
+        }
+
+        return minCandy;
+    }
+}
+```
 
 <!-- tabs:end -->
 
