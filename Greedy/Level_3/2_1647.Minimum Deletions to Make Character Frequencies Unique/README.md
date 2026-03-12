@@ -120,9 +120,6 @@ class Solution {
         }
         int c=0;
         Arrays.sort(f);
-        for(int i=0;i<26;i++)
-            System.out.print(f[i]+" ");
-        System.out.println();
         for(int i=24;i>=0;i--)
         {
             if(f[i]==0)
