@@ -90,19 +90,18 @@ class Solution:
 
 ```java
 class Solution {
-    public int scheduleCourse(int[][] courses) {
-        Arrays.sort(courses, (a, b) -> a[1] - b[1]);
-        PriorityQueue<Integer> pq = new PriorityQueue<>((a, b) -> b - a);
-        int s = 0;
-        for (var e : courses) {
-            int duration = e[0], last = e[1];
-            pq.offer(duration);
-            s += duration;
-            while (s > last) {
-                s -= pq.poll();
-            }
+    public int scheduleCourse(int[][] arr) {
+        Arrays.sort(arr,(a,b)->a[1]-b[1]);
+        PriorityQueue<Integer> q=new PriorityQueue<>((a,b)->(b-a));
+        int sum=0;
+        for(int a[]:arr)
+        {
+            sum += a[0];
+            q.add(a[0]);
+            if(sum > a[1])
+                sum -= q.poll();
         }
-        return pq.size();
+        return q.size();     
     }
 }
 ```
