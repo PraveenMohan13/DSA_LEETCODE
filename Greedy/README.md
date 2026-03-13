@@ -1,6 +1,23 @@
 
 <!-- problem:start -->
 
+Greedy (in algorithms) means making the best possible choice at each step right now, hoping it leads to the best overall solution.Greedy algorithm always picks the locally optimal option without reconsidering earlier choices.
+# How to Recognize a Greedy Problem
+Look for these clues:
+🔹 1. Optimization
+Words like:
+maximum
+minimum
+shortest
+largest
+🔹 2. Local choice possible
+You can pick the best option immediately.
+Example:
+earliest finish
+smallest weight
+highest ratio
+🔹 3. No need to reconsider decisions
+Once chosen, the decision never changes.
 # Greedy Algorithm Practice Problems
 
 
