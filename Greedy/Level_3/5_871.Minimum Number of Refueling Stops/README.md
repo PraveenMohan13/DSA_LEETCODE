@@ -75,19 +75,20 @@ We made 2 refueling stops along the way, so we return 2.
 
 ### Solution 1
 
-####Algorithm
+Algorithm
 
-Use a max heap to store fuels of passed stations.
+* Use a max heap to store fuels of passed stations.
 
-Iterate through stations.
+* Iterate through stations.
 
-If current fuel can't reach next station:
+* If current fuel can't reach next station:
 
-Pop the largest fuel from heap and refuel.
+* Pop the largest fuel from heap and refuel.
 
-Add station fuel to heap when you reach it.
+* Add station fuel to heap when you reach it.
 
-Continue until reaching target.
+* Continue until reaching target.
+  
 <!-- tabs:start -->
 
 #### Python3
