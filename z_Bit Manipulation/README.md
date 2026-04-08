@@ -50,16 +50,6 @@ Example:
 
 # Stage 2 – Very Easy LeetCode Questions
 
-Solve in this order:
-
-1. LeetCode 191 – Number of 1 Bits
-2. LeetCode 231 – Power of Two
-3. LeetCode 338 – Counting Bits
-4. LeetCode 190 – Reverse Bits
-5. LeetCode 461 – Hamming Distance
-6. LeetCode 476 – Number Complement
-7. LeetCode 136 – Single Number
-
 What you learn:
 
 * Counting set bits
@@ -71,15 +61,7 @@ What you learn:
 
 # Stage 3 – XOR Pattern Questions
 
-These are the most important.
-
-Solve in order:
-
-1. LeetCode 268 – Missing Number
-2. LeetCode 389 – Find the Difference
-3. LeetCode 260 – Single Number III
-4. LeetCode 137 – Single Number II
-5. LeetCode 540 – Single Element in a Sorted Array
+These Level is most important.
 
 Key concepts:
 
@@ -93,14 +75,6 @@ Whenever every element appears twice except one, think XOR immediately.
 ---
 
 # Stage 4 – Set Bit Tricks
-
-Solve:
-
-1. LeetCode 201 – Bitwise AND of Numbers Range
-2. LeetCode 342 – Power of Four
-3. LeetCode 693 – Binary Number with Alternating Bits
-4. LeetCode 762 – Prime Number of Set Bits
-5. LeetCode 1009 – Complement of Base 10 Integer
 
 You should learn:
 
@@ -119,15 +93,6 @@ Important idea:
 ```text
 mask = 1 << i
 ```
-
-Questions:
-
-1. LeetCode 78 – Subsets
-2. LeetCode 784 – Letter Case Permutation
-3. LeetCode 1239 – Maximum Length of a Concatenated String with Unique Characters
-4. LeetCode 1863 – Sum of All Subset XOR Totals
-5. LeetCode 78 again – solve using bitmask approach only
-
 Learn:
 
 * Represent subset using bits
@@ -149,14 +114,6 @@ n = 3
 
 # Stage 6 – Become Strong in Advanced Bit Manipulation
 
-Solve:
-
-1. LeetCode 1318 – Minimum Flips to Make a OR b Equal to c
-2. LeetCode 2419 – Longest Subarray With Maximum Bitwise AND
-3. LeetCode 2275 – Largest Combination With Bitwise AND Greater Than Zero
-4. LeetCode 1829 – Maximum XOR for Each Query
-5. LeetCode 1707 – Maximum XOR With an Element From Array
-
 Now you will see:
 
 * Per-bit reasoning
@@ -167,15 +124,6 @@ Now you will see:
 
 # Stage 7 – Trie + XOR Problems (Pro Level)
 
-These are asked in top companies.
-
-Solve in order:
-
-1. LeetCode 421 – Maximum XOR of Two Numbers in an Array
-2. LeetCode 1707 – Maximum XOR With an Element From Array
-3. LeetCode 1803 – Count Pairs With XOR in a Range
-4. LeetCode 1938 – Maximum Genetic Difference Query
-
 Concept:
 
 * Binary Trie
@@ -185,14 +133,6 @@ Concept:
 ---
 
 # Stage 8 – Bitmask Dynamic Programming (Expert Level)
-
-Questions:
-
-1. LeetCode 698 – Partition to K Equal Sum Subsets
-2. LeetCode 847 – Shortest Path Visiting All Nodes
-3. LeetCode 1434 – Number of Ways to Wear Different Hats
-4. LeetCode 1125 – Smallest Sufficient Team
-5. LeetCode 1494 – Parallel Courses II
 
 These teach:
 
