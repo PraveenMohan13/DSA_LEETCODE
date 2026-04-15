@@ -34,15 +34,12 @@ Computers store everything as binary (`0` and `1`). Bit manipulation means direc
 a = 5   # binary: 0101
 b = 3   # binary: 0011
 
-The 6 Bitwise Operators
-Operator Examples in Python
-
-print(a & b)   # 1
-print(a | b)   # 7
-print(a ^ b)   # 6
-print(~a)      # -6
-print(a << 1)  # 10
-print(a >> 1)  # 2
+print(a & b)   # 1  -> 0001  (AND)
+print(a | b)   # 7  -> 0111  (OR)
+print(a ^ b)   # 6  -> 0110  (XOR)
+print(~a)      # -6  (flips all bits including sign bit)
+print(a << 1)  # 10  -> 1010  (left shift = *2)
+print(a >> 1)  # 2   -> 0010  (right shift = /2)
 ```
 
 ### Examples
@@ -52,8 +49,8 @@ print(a >> 1)  # 2
 ```text
   0101  (5)
 & 0011  (3)
-------
-  0001  (1)
+------  (both must be 1)
+  0001  (1)  →   5 & 3 = 1
 ```
 
 #### 2. OR (`|`)
@@ -61,8 +58,8 @@ print(a >> 1)  # 2
 ```text
   0101  (5)
 | 0011  (3)
-------
-  0111  (7)
+------  (at least one is 1)
+  0111  (7)  →   5 | 3 = 7
 ```
 
 #### 3. XOR (`^`)
@@ -70,33 +67,41 @@ print(a >> 1)  # 2
 ```text
   0101  (5)
 ^ 0011  (3)
-------
-  0110  (6)
+------  (exactly one is 1)
+  0110  (6)  →   5 ^ 3 = 6
 ```
 
 #### 4. NOT (`~`)
 
 ```text
-~5 = -6
+~5 = -6  6     (-(n+1) in two's complement)
 ```
 
 #### 5. Left Shift (`<<`)
 
 ```text
-5 << 1 = 10
-5 << 2 = 20
+5 << 1 = 10  (0101 → 1010)
+5 << 2 = 20  (0101 → 10100)
 ```
 
 #### 6. Right Shift (`>>`)
 
 ```text
-20 >> 1 = 10
-20 >> 2 = 5
+20 >> 1 = 10   (10100 → 01010)
+20 >> 2 = 5    (10100 → 00101)
 ```
 
 ---
 
 ## 🟡 Level 2 — Intermediate: Core Tricks
+
+In bit manipulation, a <br>
+•	“set bit” means a bit whose value is 1.<br>
+•	“Unset bit or Clear bit” means a bit whose value is 0.<br>
+So when someone says:<br>
+•	“Set the 3rd bit” → make that bit 1<br>
+•	“Count set bits” → count how many 1s are in the binary representation<br>
+•	“Check if a bit is set” → check if that bit is 1<br>
 
 ### Bit Indexing
 
@@ -109,34 +114,42 @@ Binary: 1101
 Position: 3 2 1 0
 Bits:     1 1 0 1
 ```
+•	Bit 0 → Rightmost bit (Least Significant Bit — LSB) <br>
+•	Bit 3 → Leftmost bit (Most Significant Bit — MSB in this 4-bit example)
 
 ### Multiply / Divide by Powers of 2
 
 ```python
-n << k   # n * 2^k
-n >> k   # n / 2^k
+n << k   # n * 2^k (fast multiply)
+n >> k   # n / 2^k (fast divide)
 ```
 
 ```python
-5 << 3   # 40
-40 >> 3  # 5
+5 << 3   # 5 x 8 = 40
+40 >> 3  # 40 / 8 = 5
 ```
 
 ### XOR Properties
 
 ```python
-a ^ a = 0
-a ^ 0 = a
-a ^ b ^ a = b
+a ^ a = 0          -> same number cancels out
+a ^ 0 = a          -> XOR with 0 = itself
+a ^ b ^ a = b      -> order does not matter
 ```
 
 ### Set, Check, Clear, Toggle Bits
 
 #### Set a Bit
+To set the kth bit, use OR | with a left shift:
 
 ```python
 n = n | (1 << k)
 ```
+##### Example
+Set bit 1 (0-based index) in number 8:<br>
+n = 8        → 1000<br>
+1 << 1       → 0010<br>
+Result       → 1010 (10)<br>
 
 #### Check a Bit
 
@@ -144,91 +157,157 @@ n = n | (1 << k)
 if n & (1 << k):
     print("Bit is set")
 ```
+If result ≠ 0 → bit is set.<br>
+•  1 << k creates a number where only the k-th bit is 1<br>
+•  AND (&) with n keeps only that bit<br>
+•  If result ≠ 0 → bit was set<br>
 
+#### Check if a bit is SET at position i
 ```python
 def is_bit_set(n, i):
     return ((n >> i) & 1) == 1
 ```
+ n=5 (0101), i=2  →  0101 >> 2 = 0001, & 1 = 1
 
-#### Clear a Bit
+•  Shift the i-th bit to the last position
+•  Then check if last bit is 1 using & 1
 
+#### Clear a Bit (Make it 0)
+To clear the kth bit, use:
 ```python
 n = n & ~(1 << k)
 ```
+##### Why this works
+•	(1 << k) creates a number with only the kth bit set.<br>
+•	~ inverts it (so kth bit becomes 0, others 1).<br>
+•	& keeps all bits same except kth bit becomes 0.<br>
 
-#### Toggle a Bit
+Example
+Clear bit 1 in n = 10
+10       = 1010
+1 << 1   = 0010
+~(0010)  = 1101
 
+----------------
+Result   = 1000 (8)
+Bit 1 is now cleared ✅
+
+#### Toggle a Bit (Flip 0 ↔ 1)
+To toggle the kth bit, use XOR:
 ```python
 n = n ^ (1 << k)
 ```
+Why this works
+•	XOR with 1 flips the bit
+•	XOR with 0 keeps it same
+
+Example
+Toggle bit 1 in n = 10
+10       = 1010
+1 << 1   = 0010
+
+----------------
+Result   = 1000 (8)
+If you toggle again:
+1000 ^ 0010 = 1010 (10)
+It flips back 
 
 ### Quick Summary
 
-| Operation  | Formula             |           |
-| ---------- | ------------------- | --------- |
-| Set bit    | `n = n              | (1 << k)` |
-| Clear bit  | `n = n & ~(1 << k)` |           |
-| Toggle bit | `n = n ^ (1 << k)`  |           |
-| Check bit  | `n & (1 << k)`      |           |
+| Operation  | Formula             |
+| ---------- | ------------------- |
+| Set bit    | n = n I (1 << k)    |
+| Clear bit  | `n = n & ~(1 << k)` |
+| Toggle bit | `n = n ^ (1 << k)`  |
+| Check bit  | `n & (1 << k)`      |
+
 
 ### Even / Odd
 
 ```python
-n & 1 == 0   # Even
-n & 1 == 1   # Odd
+n & 1 == 0   # Even (last bit is 0)
+n & 1 == 1   # Odd  (last bit is 1)
 ```
 
 ### Power of 2
-
+Powers of 2 have exactly ONE set bit. So n & (n-1) equals zero for them.<br>
+8 = 1000, 8-1 = 0111 -> AND = 0 -> True<br>
 ```python
 def is_power_of_2(n):
     return n > 0 and (n & (n - 1)) == 0
 ```
-
-### Lowest Set Bit
+ n=8  →  1000 & 0111 = 0000  ✓<br>
+ n=6  →  0110 & 0101 = 0100  ✗
+ 
+### Isolate the Lowest Set Bit
 
 ```python
-lowest_bit = n & (-n)
+lowest_bit = n & (-n)    # Isolates rightmost set bit
+# Because -n = ~n + 1 in two's complement
+
+n = 12     # 1100
+-n = -12   # 0100  (two's complement)
+n & -n     # 0100 = 4  -> the lowest set bit
+
 ```
 
 ### Clear Lowest Set Bit
 
 ```python
-n & (n - 1)
+n & (n - 1)    # Removes rightmost 1-bit<br>
+# 1100 & 1011 = 1000
 ```
+### Extract lowest set bit
+n & (-n)       # Isolates rightmost 1-bit<br>
 
----
+n=12 (1100): 1100 & 0100 = 0100 (4)
 
 ## 🟠 Level 3 — Intermediate-Advanced: Classic Problems
 
-### Count Set Bits
-
-```python
-def count_set_bits(n):
-    count = 0
-    while n:
-        n &= n - 1
-        count += 1
-    return count
+### Count Set Bits 
+#### (Hamming Weight) — O(k)
+int count = 0;
+while (n) {
+    count += n & 1;
+    n >>= 1;
+}
+#### Brian Kernighan’s algorithm (faster):
+```text
+while (n) {
+    n = n & (n - 1);	# Clear lowest bit each time
+    count++;
+}
 ```
+n=7 (111)  →  110  →  100  →  000 = 3 iterations
 
 ### Single Number Using XOR
+In an array where every element appears twice except one — find it.
+[1, 2, 3, 2, 1] -> answer is 3
+All duplicates cancel via XOR!
 
 ```python
 def single_number(nums):
     result = 0
     for n in nums:
-        result ^= n
+        result ^= n  # Same numbers cancel: a ^ a = 0
     return result
 ```
+[2, 3, 2]  →  0^2^3^2 = 3
 
 ### Swap Without Temp Variable
 
-```python
-a ^= b
-b ^= a
-a ^= b
+```text
+a = 5; b = 3<br>
+a ^= b   # a = 5^3 = 6	# a = a XOR b<br>
+b ^= a   # b = 3^6 = 5	# b = b XOR (a XOR b) = a<br>
+a ^= b   # a = 6^5 = 3	# a = (a XOR b) XOR a = b<br>
+# Now a=3, b=5 ✓<br>
 ```
+Why it works
+Remember these XOR properties:
+•	x ^ x = 0
+•	x ^ 0 = x
+•	XOR is commutative and associative
 
 ### Reverse Bits
 
@@ -248,13 +327,15 @@ def get_bits(n, i, j):
     mask = ((1 << (j - i + 1)) - 1) << i
     return (n & mask) >> i
 ```
+n=0b11101100, i=2, j=5  →  extracts bits 2-5
 
-### Two's Complement
+### Two's Complement(How Negatives Work)
 
 ```text
 Positive 5:  00000101
 Flip bits:   11111010
 Add 1:       11111011   = -5
+So: ~n = -(n+1)  ->  ~5 = -6
 ```
 
 ---
@@ -270,6 +351,8 @@ n * 7  == (n << 3) - n
 ```
 
 ### Brian Kernighan's Algorithm
+Counts set bits by only iterating over set bits, not all 32 bits.<br>
+The key insight: n & (n-1) removes the LOWEST set bit from n.<br>
 
 ```python
 def count_set_bits(n):
@@ -281,22 +364,31 @@ def count_set_bits(n):
 ```
 
 ### Bitmask DP Example (Traveling Salesman)
-
-```python
+Used when state = subset of elements. Each bit represents whether a city has been visited.
+```text
 n = 4
 dp = [[float('inf')] * n for _ in range(1 << n)]
-dp[1][0] = 0
+dp[1][0] = 0   # Start at city 0, visited = {0} = 0001
+
+for mask in range(1 << n):
+    for u in range(n):
+        if not (mask >> u) & 1: continue
+        for v in range(n):
+            if (mask >> v) & 1: continue
+            new_mask = mask | (1 << v)
+            dp[new_mask][v] = min(dp[new_mask][v],
+            dp[mask][u] + dist[u][v])
 ```
 
-### Find Two Unique Numbers
+### Find Two Unique Numbers(XOR)
 
 ```python
 def find_two_singles(nums):
     xor = 0
-    for n in nums:
+    for n in nums:   # xor = a^b
         xor ^= n
 
-    diff_bit = xor & (-xor)
+    diff_bit = xor & (-xor)  # Rightmost differing bit
 
     a = b = 0
     for n in nums:
@@ -307,7 +399,7 @@ def find_two_singles(nums):
     return a, b
 ```
 
-### Maximum XOR Using Trie
+### Bit Trie - Maximum XOR Using Trie
 
 ```python
 class TrieNode:
@@ -343,22 +435,35 @@ def max_xor(nums):
 
     return max_val
 ```
+#### Bitmask — Store Sets Efficiently
+Instead of a list of booleans, use an integer as a set of flags:<br>
+mask = 0<br>
+mask |= (1 << 2)   # Add element 2   -> mask = 00100<br>
+mask |= (1 << 4)   # Add element 4   -> mask = 10100<br>
+(mask >> 2) & 1    # Check element 2 -> 1 (exists)<br>
+mask &= ~(1 << 2)  # Remove element 2 -> mask = 10000<br>
+
+Iterate all subsets of n elements<br>
+n = 4<br>
+for mask in range(1 << n):        # 0 to 2^n - 1<br>
+    print(bin(mask))              # Every possible subset<br>
 
 ---
 
 ## 📋 Quick Reference Cheat Sheet
 
-| Operation         | Code               | Use Case       |              |
-| ----------------- | ------------------ | -------------- | ------------ |
-| Is odd?           | `n & 1`            | Parity check   |              |
-| Power of 2?       | `n & (n - 1) == 0` | Validation     |              |
-| Set bit i         | `n                 | (1 << i)`      | Flag setting |
-| Clear bit i       | `n & ~(1 << i)`    | Flag clearing  |              |
-| Toggle bit i      | `n ^ (1 << i)`     | Toggle flags   |              |
-| Low bit           | `n & -n`           | Fenwick tree   |              |
-| Drop low bit      | `n & (n - 1)`      | Count set bits |              |
-| Multiply by `2^n` | `n << k`           | Fast math      |              |
-| Divide by `2^n`   | `n >> k`           | Fast math      |              |
+| Operation         | Code               | Use Case        |
+| ----------------- | ------------------ | --------------  |
+| Is odd?           | `n & 1`            | Parity check    |
+| Power of 2?       | `n & (n - 1) == 0` | Validation      |
+| Set bit i         | n I (1 << i)       | Flag setting    |
+| Clear bit i       | `n & ~(1 << i)`    | Flag clearing   |
+| Toggle bit i      | `n ^ (1 << i)`     | Toggle flags    |
+| Low bit           | `n & -n`           | Fenwick tree    |
+| Drop low bit      | `n & (n - 1)`      | Count set bits  |
+| Multiply by `2^n` | `n << k`           | Fast math       |
+| Divide by `2^n`   | `n >> k`           | Fast math       |
+| Swap a,b          | `a^=b; b^=a; a^=b` | No temp variable|
 
 ---
 
