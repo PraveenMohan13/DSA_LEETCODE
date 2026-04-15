@@ -34,6 +34,9 @@ Computers store everything as binary (`0` and `1`). Bit manipulation means direc
 a = 5   # binary: 0101
 b = 3   # binary: 0011
 
+The 6 Bitwise Operators
+Operator Examples in Python
+
 print(a & b)   # 1
 print(a | b)   # 7
 print(a ^ b)   # 6
