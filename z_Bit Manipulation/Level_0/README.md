@@ -17,7 +17,7 @@ Computers store everything as binary (`0` and `1`). Bit manipulation means direc
 | 2       | `0010` | One Two               |
 | 5       | `0101` | One 4 + one 1         |
 | 8       | `1000` | One 8                 |
-| 15      | `1111` | One 8 + one 4 + one 1 |
+| 15      | `1111` | One 8 + one 4 + one 2 + one 1 |
 
 ### The 6 Bitwise Operators
 
