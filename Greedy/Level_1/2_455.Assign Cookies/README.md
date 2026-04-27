@@ -226,7 +226,69 @@ var findContentChildren = function (g, s) {
     return m;
 };
 ```
+### Solution 2: DP 
+#### Java
+```
+import java.util.Arrays;
 
+class Solution {
+    public int findContentChildren(int[] g, int[] s) {
+        Arrays.sort(g);
+        Arrays.sort(s);
+
+        int n = g.length;
+        int m = s.length;
+
+        int[][] dp = new int[n + 1][m + 1];
+
+        for (int i = 1; i <= n; i++) {
+            for (int j = 1; j <= m; j++) {
+                // Option 1: skip this cookie
+                dp[i][j] = dp[i][j - 1];
+
+                // Option 2: assign cookie if possible
+                if (s[j - 1] >= g[i - 1]) {
+                    dp[i][j] = Math.max(dp[i][j], 1 + dp[i - 1][j - 1]);
+                }
+            }
+        }
+
+        return dp[n][m];
+    }
+}
+```
+#### Java
+```
+import java.util.Arrays;
+
+class Solution {
+    public int findContentChildren(int[] g, int[] s) {
+        Arrays.sort(g);
+        Arrays.sort(s);
+
+        int n = g.length;
+        int m = s.length;
+
+        int[] dp = new int[m + 1];
+
+        for (int i = 1; i <= n; i++) {
+            int[] newDp = dp.clone();
+
+            for (int j = 1; j <= m; j++) {
+                newDp[j] = newDp[j - 1];
+
+                if (s[j - 1] >= g[i - 1]) {
+                    newDp[j] = Math.max(newDp[j], 1 + dp[j - 1]);
+                }
+            }
+
+            dp = newDp;
+        }
+
+        return dp[m];
+    }
+}
+```
 <!-- tabs:end -->
 
 <!-- solution:end -->
