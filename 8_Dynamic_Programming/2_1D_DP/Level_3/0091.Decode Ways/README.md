@@ -123,6 +123,43 @@ class Solution:
 ```java
 class Solution {
     public int numDecodings(String s) {
+        Integer[] memo = new Integer[s.length()];
+        return dfs(0, s, memo);
+    }
+
+    private int dfs(int i, String s, Integer[] memo) {
+        if (i == s.length()) {
+            return 1;
+        }
+
+        // Strings starting with '0' are invalid
+        if (s.charAt(i) == '0') {
+            return 0;
+        }
+
+        if (memo[i] != null) {
+            return memo[i];
+        }
+
+        // Take one digit
+        int ways = dfs(i + 1, s, memo);
+
+        // Take two digits if valid
+        if (i + 1 < s.length()) {
+            int num = (s.charAt(i) - '0') * 10 + (s.charAt(i + 1) - '0');
+            if (num >= 10 && num <= 26) {
+                ways += dfs(i + 2, s, memo);
+            }
+        }
+
+        memo[i] = ways;
+        return ways;
+    }
+}
+```
+```java
+class Solution {
+    public int numDecodings(String s) {
         int n = s.length();
         int[] dp = new int[n + 1];
 
