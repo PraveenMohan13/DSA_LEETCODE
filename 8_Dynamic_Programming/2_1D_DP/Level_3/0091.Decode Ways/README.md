@@ -120,7 +120,64 @@ class Solution:
 ```
 
 #### Java
+```java
+class Solution {
+    public int numDecodings(String s) {
+        int n = s.length();
+        int[] dp = new int[n + 1];
 
+        dp[n] = 1; // Empty string has one way
+
+        for (int i = n - 1; i >= 0; i--) {
+            if (s.charAt(i) == '0') {
+                dp[i] = 0;
+            } else {
+                dp[i] = dp[i + 1]; // Take one digit
+
+                if (i + 1 < n) {
+                    int num = (s.charAt(i) - '0') * 10 + (s.charAt(i + 1) - '0');
+                    if (num >= 10 && num <= 26) {
+                        dp[i] += dp[i + 2];
+                    }
+                }
+            }
+        }
+
+        return dp[0];
+    }
+}
+```
+```java
+class Solution {
+    public int numDecodings(String s) {
+        int n = s.length();
+
+        int next = 1;      // dp[i+1]
+        int nextNext = 0;  // dp[i+2]
+        int curr = 0;
+
+        for (int i = n - 1; i >= 0; i--) {
+            if (i == n - 1) {
+                curr = (s.charAt(i) == '0') ? 0 : 1;
+            } else if (s.charAt(i) == '0') {
+                curr = 0;
+            } else {
+                curr = next;
+
+                int num = (s.charAt(i) - '0') * 10 + (s.charAt(i + 1) - '0');
+                if (num >= 10 && num <= 26) {
+                    curr += nextNext;
+                }
+            }
+
+            nextNext = next;
+            next = curr;
+        }
+
+        return next;
+    }
+}
+```
 ```java
 class Solution {
     public int numDecodings(String s) {
