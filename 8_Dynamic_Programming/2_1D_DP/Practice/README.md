@@ -22,3 +22,4 @@
 | 45 | [Jump Game II](https://leetcode.com/problems/jump-game-ii/) | [View Solution](https://github.com/code-with-ziad/Leetcode-Solution/tree/main/LSData/45) |
 | 416 | [Partition Equal Subset Sum](https://leetcode.com/problems/partition-equal-subset-sum/) | [View Solution](https://github.com/code-with-ziad/Leetcode-Solution/tree/main/LSData/416) |
 | 494 | [Target Sum](https://leetcode.com/problems/target-sum/) | [View Solution](https://github.com/code-with-ziad/Leetcode-Solution/tree/main/LSData/494) |
+| 368 | [largest divisible subset](https://leetcode.com/problems/largest-divisible-subset) | [View Solution](https://github.com/code-with-ziad/Leetcode-Solution/tree/main/LSData/368) |
