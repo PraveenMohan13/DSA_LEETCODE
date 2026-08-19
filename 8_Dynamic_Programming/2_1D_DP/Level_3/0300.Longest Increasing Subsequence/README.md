@@ -224,6 +224,28 @@ class Solution:
 
 ```java
 class Solution {
+    public int lengthOfLIS(int[] a) {
+        List<Integer> l=new ArrayList<>();
+        l.add(a[0]);
+        for(int i=1;i<a.length;i++)
+        {
+            if(a[i]>l.get(l.size()-1))
+                l.add(a[i]);
+            else
+            {
+                int ind=Collections.binarySearch(l,a[i]);
+                if(ind<0)
+                    ind=-(ind+1);
+                l.set(ind,a[i]);
+            }
+        }
+        return l.size();
+
+    }
+}
+```
+```java
+class Solution {
     public int lengthOfLIS(int[] nums) {
         int[] s = nums.clone();
         Arrays.sort(s);
